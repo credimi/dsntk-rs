@@ -217,7 +217,7 @@ impl HTMLGenerator {
     } else {
       "Decision Table"
     };
-    body.add_child(HtmlElement::h1(document_title));
+    body.add_child(HtmlElement::h1(document_title).attribute("id", decision_table.id()));
     // add decision table
     match &decision_table.preferred_orientation() {
       DecisionTableOrientation::RuleAsRow => {
@@ -425,7 +425,7 @@ fn create_model_element_decision_service(decision_service: &DecisionService) -> 
 /// Creates model element containing decision details.
 fn create_model_element_decision(decision: &Decision) -> HtmlElement {
   // prepare the container for the details
-  let mut model_element_container = HtmlElement::div().class(CLASS_MODEL_ELEMENT_CONTAINER);
+  let mut model_element_container = HtmlElement::div().class(CLASS_MODEL_ELEMENT_CONTAINER).attribute("id", decision.name());
   // prepare the name of the element
   let mut element_name = HtmlElement::div().class(CLASS_MODEL_ELEMENT_NAME);
   element_name.set_content(decision.name());
